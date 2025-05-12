@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Post Job</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <a href="index.html">Home</a>
+  <button class="toggle-btn" onclick="toggleDarkMode()">🌓</button>
+  <div class="container">
+    <h1>Post Job</h1>
+    <form id="jobForm">
+      <input type="text" id="title" placeholder="Job Title" required>
+      <input type="text" id="location" placeholder="Location" required>
+      <textarea id="description" placeholder="Job Description" required></textarea>
+      <button type="submit">Post</button>
+    </form>
+  </div>
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode')
+      localStorage.setItem('dark', document.body.classList.contains('dark-mode'))
+    }
+    if (localStorage.getItem('dark') === 'true') {
+      document.body.classList.add('dark-mode')
+    }
+
+    document.getElementById("jobForm").addEventListener("submit", function(e) {
+      e.preventDefault()
+      let t = document.getElementById("title").value
+      let l = document.getElementById("location").value
+      let d = document.getElementById("description").value
+      let job = { title: t, location: l, description: d }
+      let jobs = JSON.parse(localStorage.getItem("jobs")) || []
+      jobs.push(job)
+      localStorage.setItem("jobs", JSON.stringify(jobs))
+      alert("Job posted!")
+      window.location.href = "jobs.html"
+    })
+  </script>
+</body>
+</html>

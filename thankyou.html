@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thanks</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <button class="toggle-btn" onclick="toggleDarkMode()">🌓</button>
+  <div class="container">
+    <h1>Thank You!</h1>
+    <p>Your application was submitted.</p>
+    <a href="index.html">Back Home</a>
+  </div>
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode')
+      localStorage.setItem('dark', document.body.classList.contains('dark-mode'))
+    }
+    if (localStorage.getItem('dark') === 'true') {
+      document.body.classList.add('dark-mode')
+    }
+  </script>
+</body>
+</html>

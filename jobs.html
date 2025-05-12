@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jobs</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <a href="index.html">Home</a>
+  <button class="toggle-btn" onclick="toggleDarkMode()">🌓</button>
+  <div class="container">
+    <h1>Job Listings</h1>
+    <div id="jobList"></div>
+  </div>
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode')
+      localStorage.setItem('dark', document.body.classList.contains('dark-mode'))
+    }
+    if (localStorage.getItem('dark') === 'true') {
+      document.body.classList.add('dark-mode')
+    }
+
+    let jobs = JSON.parse(localStorage.getItem("jobs")) || []
+    let jobList = document.getElementById("jobList")
+    if (jobs.length === 0) {
+      jobList.innerHTML = "<p>No jobs yet</p>"
+    } else {
+      jobs.forEach(j => {
+        let div = document.createElement("div")
+        div.className = "job"
+        div.innerHTML = "<h2>" + j.title + "</h2><p>" + j.location + "</p><p>" + j.description + "</p><button onclick='applyJob(" + JSON.stringify(j) + ")'>Apply</button>"
+        jobList.appendChild(div)
+      })
+    }
+
+    function applyJob(job) {
+      localStorage.setItem("jobToApply", JSON.stringify(job))
+      window.location.href = "apply.html"
+    }
+  </script>
+</body>
+</html>

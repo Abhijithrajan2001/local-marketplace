@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Profile</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <a href="index.html">Home</a>
+  <button class="toggle-btn" onclick="toggleDarkMode()">🌓</button>
+  <div class="container">
+    <h1>Your Profile</h1>
+    <h2>Applied Jobs</h2>
+    <div id="appliedJobs">
+      <p>No jobs applied yet.</p>
+    </div>
+  </div>
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode')
+      localStorage.setItem('dark', document.body.classList.contains('dark-mode'))
+    }
+    if (localStorage.getItem('dark') === 'true') {
+      document.body.classList.add('dark-mode')
+    }
+
+    let appliedJobs = JSON.parse(localStorage.getItem("appliedJobs")) || []
+    let appliedJobsDiv = document.getElementById("appliedJobs")
+    if (appliedJobs.length === 0) {
+      appliedJobsDiv.innerHTML = "<p>No jobs applied yet.</p>"
+    } else {
+      appliedJobs.forEach(job => {
+        let div = document.createElement("div")
+        div.className = "job"
+        div.innerHTML = "<h3>" + job.title + "</h3><p>" + job.location + "</p><p>" + job.description + "</p>"
+        appliedJobsDiv.appendChild(div)
+      })
+    }
+  </script>
+</body>
+</html>

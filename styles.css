@@ -1,0 +1,63 @@
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: background 0.3s, color 0.3s;
+}
+header, nav, main {
+  padding: 20px;
+}
+nav a {
+  margin-right: 15px;
+  text-decoration: none;
+  color: inherit;
+}
+.toggle-btn {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
+.dark-mode {
+  background: #121212;
+  color: white;
+}
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+.job {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background: #f9f9f9;
+  transition: 0.2s;
+}
+.job:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+a.button {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  background: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+input, textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+button {
+  padding: 10px 20px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}

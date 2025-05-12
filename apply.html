@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Apply</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <button class="toggle-btn" onclick="toggleDarkMode()">🌓</button>
+  <div class="container">
+    <h1>Apply</h1>
+    <form id="applyForm">
+      <input type="text" id="name" placeholder="Name" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="text" id="position" placeholder="Position" required>
+      <textarea id="reason" placeholder="Why you?" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode')
+      localStorage.setItem('dark', document.body.classList.contains('dark-mode'))
+    }
+    if (localStorage.getItem('dark') === 'true') {
+      document.body.classList.add('dark-mode')
+    }
+
+    let job = JSON.parse(localStorage.getItem("jobToApply")) || {}
+
+    document.getElementById("applyForm").addEventListener("submit", function(e) {
+      e.preventDefault()
+      let appliedJobs = JSON.parse(localStorage.getItem("appliedJobs")) || []
+      let appliedJob = {
+        title: job.title,
+        location: job.location,
+        description: job.description,
+      }
+      appliedJobs.push(appliedJob)
+      localStorage.setItem("appliedJobs", JSON.stringify(appliedJobs))
+      alert("Application submitted!")
+      window.location.href = "profile.html"
+    })
+  </script>
+</body>
+</html>
